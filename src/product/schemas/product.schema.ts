@@ -5,6 +5,10 @@ export type ProductDocument = Product & Document;
 
 @Schema()
 export class Product {
+
+  @Prop()
+  slug: string;
+
   @Prop()
   name: string;
 
@@ -12,10 +16,19 @@ export class Product {
   description: string;
 
   @Prop()
+  images: { src: string, alt: string, title: string }[];
+
+  @Prop()
   price: number;
 
   @Prop()
   category: string;
+
+  @Prop()
+  createdAt: string;
+
+  @Prop()
+  updatedAt: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

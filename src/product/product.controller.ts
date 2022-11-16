@@ -2,6 +2,7 @@ import { Controller, Post, Get, Put, Delete, Body, Param, Query, NotFoundExcepti
 import { ProductService } from './product.service';
 import { CreateProductDTO } from './dtos/create-product.dto';
 import { FilterProductDTO } from './dtos/filter-product.dto';
+import { UpdateProductDTO } from './dtos/update-product.dto';
 
 @Controller('store/products')
 export class ProductController {
@@ -41,9 +42,9 @@ export class ProductController {
   @Put('/:id')
   async updateProduct(
     @Param('id') id: string,
-    @Body() createProductDTO: CreateProductDTO
+    @Body() updateProductDTO: UpdateProductDTO
   ) {
-    const product = await this.productService.updateProduct(id, createProductDTO)
+    const product = await this.productService.updateProduct(id, updateProductDTO)
     if (!product) throw new NotFoundException('Product does now exist!')
     return product
   }
